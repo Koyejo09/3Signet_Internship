@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="" readonly="0" foreign_keys="" case_sensitive_like="" temp_store="" wal_autocheckpoint="" synchronous=""/><attached/><window><main_tabs open="structure browser pragmas query" current="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="682"/><column_width id="4" width="0"/></tab_structure><tab_browse><table title="." custom_title="0" dock_id="1" table="0,0:"/><dock_state state="000000ff00000000fd00000001000000020000000000000000fc0100000001fb000000160064006f0063006b00420072006f00770073006500310100000000ffffffff0000011e00ffffff000000000000000000000004000000040000000800000008fc00000000"/><default_encoding codec=""/><browse_table_settings/></tab_browse><tab_sql><sql name="week 8 sql script report*">--- 3Signet Week 8 Task: SQL Data Analysis
+---Tasks:
+---1. Sales Performance Analysis
+-----a. What are the total sales for each product?(Identify the top selling products)
+SELECT &quot;Product Name&quot;, SUM(Sales) as TotalSales
+From Pharm_sales
+Group by &quot;Product Name&quot;
+order by TotalSales DESC;
+
+-----b. How do sales vary by month within a specific year? ( analyse monthly sales trend)
+SELECT Month AS Month, SUM (Sales) as MonthlySales
+FROM Pharm_sales
+where Year= 2017
+group by Month
+Order by MonthlySales DESC
+
+SELECT Month AS Month, SUM (Sales) as MonthlySales
+FROM Pharm_sales
+where Year= 2018
+group by Month
+Order by MonthlySales DESC
+
+SELECT Month AS Month, SUM (Sales) as MonthlySales
+FROM Pharm_sales
+where Year= 2019
+group by Month
+Order by MonthlySales DESC 
+
+SELECT Month AS Month, SUM (Sales) as MonthlySales
+FROM Pharm_sales
+where Year= 2020
+group by Month
+Order by MonthlySales DESC 
+
+---2. Sales by Location
+-----a. Which cities have the highest total; sales? (Identify top cities by sales volume)
+select City, sum(Sales) as TotalSales
+frOM Pharm_sales
+group by City
+order by TotalSales DESC;
+
+-----b.How do sales compare across different countries? (Analyze sales performance by country)
+SELECT Country, SUM(Sales) as TotalSales
+from Pharm_sales
+Group by Country
+Order by TotalSales DESC;
+
+---3. Customer Segmentation
+-----a. What is the total sales by customer type (e.g., Hospitals, Pharmacies)?
+SELECT Channel, SUM(Sales) AS TotalSales
+FROM Pharm_sales
+GROUP BY Channel
+ORDER BY TotalSales DESC;
+
+-----b. How do sales differ across various sectors (e.g., Government vs. Private buyers)?
+SELECT &quot;Sub-channel&quot;, sum (Sales) as TotalSales
+from Pharm_sales
+group by &quot;Sub-channel&quot;
+order by TotalSales DESC;
+-----b. How do sales differ across various sectors (e.g., Government vs. Private buyers)?
+
+---4. Product Analysis
+-----a.What are the top-selling products within each drug class?
+SELECT &quot;Product Class&quot;, &quot;Product Name&quot;, SUM(Sales) AS TotalSales
+FROM Pharm_sales
+WHERE &quot;Product Class&quot; = 'Analgesics'
+GROUP BY &quot;Product Class&quot;, &quot;Product Name&quot;
+ORDER BY TotalSales DESC
+LIMIT 10;
+
+SELECT &quot;Product Class&quot;, &quot;Product Name&quot;, SUM(Sales) AS TotalSales
+FROM Pharm_sales
+WHERE &quot;Product Class&quot; = 'Antibiotics'
+GROUP BY &quot;Product Class&quot;, &quot;Product Name&quot;
+ORDER BY TotalSales DESC
+LIMIT 10;
+
+SELECT &quot;Product Class&quot;, &quot;Product Name&quot;, SUM(Sales) AS TotalSales
+FROM Pharm_sales
+WHERE &quot;Product Class&quot; = 'Antimalarial'
+GROUP BY &quot;Product Class&quot;, &quot;Product Name&quot;
+ORDER BY TotalSales DESC
+LIMIT 10;
+
+SELECT &quot;Product Class&quot;, &quot;Product Name&quot;, SUM(Sales) AS TotalSales
+FROM Pharm_sales
+WHERE &quot;Product Class&quot; = 'Antipiretics'
+GROUP BY &quot;Product Class&quot;, &quot;Product Name&quot;
+ORDER BY TotalSales DESC
+LIMIT 10;
+
+SELECT &quot;Product Class&quot;, &quot;Product Name&quot;, SUM(Sales) AS TotalSales
+FROM Pharm_sales
+WHERE &quot;Product Class&quot; = 'Mood Stabilizers'
+GROUP BY &quot;Product Class&quot;, &quot;Product Name&quot;
+ORDER BY TotalSales DESC
+LIMIT 10;
+
+-----b. What is the average price for each class of drugs? (Analyze pricing by product class)
+SELECT &quot;Product Class&quot;, AVG(Price) AS AveragePrice
+FROM Pharm_sales
+GROUP BY &quot;Product Class&quot;;
+ORDER BY AveragePrice DESC
+
+---5. Sales Representative Performance
+-----a. Who are the top-performing sales representatives based on total sales?
+SELECT &quot;Name of Sales Rep&quot;, SUM(Sales) as Totalsales
+from Pharm_sales
+group by &quot;Name of Sales Rep&quot;
+Order by Totalsales desc;
+
+-----b. How does sales performance vary across different sales teams?
+SELECT &quot;Sales Team&quot;, SUM(Sales) AS TotalSales
+FROM Pharm_sales
+GROUP BY &quot;Sales Team&quot;
+ORDER BY TotalSales DESC;
+
+---6. Time Series Analysis
+-----a. What is the year-over-year growth in total sales? (Measure growth trends over the years)
+select Year, sum(Sales) as YearlySales
+from Pharm_sales
+group by Year
+order by Year;
+
+-----b.Which months consistently have the highest sales volume? (Identify seasonal sales patterns)
+select Month, sum(Sales) as MonthlySales
+from Pharm_sales
+Group by Month 
+oRDER BY MonthlySales DESC;
+</sql><current_tab id="0"/></tab_sql></sqlb_project>
